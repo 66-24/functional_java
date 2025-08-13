@@ -1,5 +1,10 @@
 # Learn Functional Java
 
+
+## AI Assist
+
+- https://developers.google.com/gemini-code-assist/docs/tools-agents/tools-overview
+
 ## Nixify
 
 1. `devenv init`
@@ -87,3 +92,69 @@ Think of it like a doctor diagnosing a patient:
     *   **Symptom**: Every few hours, the application experiences a 10-second "hiccup" where performance degrades, but it's not a full crash or deadlock, so `jstack` and `jmap` might miss it.
     *   **Action**: You have JFR running continuously. After a hiccup occurs, you dump the recording: `jcmd <PID> JFR.dump name=my_recording filename=recording.jfr`. You then analyze this `recording.jfr` file in a tool like Java Mission Control (JMC).
     *   **Diagnosis**: The JMC analysis shows that during the hiccup, there were long "safepoint" pauses, and the "Lock Contention" view shows that dozens of threads were all waiting for a lock on a single, non-performant logging object. This points you to a bottleneck in your logging configuration that only becomes apparent under specific load conditions.
+
+## In Bits and Bytes
+
+| Type      | Size (Bits) | Size (Bytes)    |
+|-----------|-------------|-----------------|
+| `byte`    | 8           | 1               |
+| `short`   | 16          | 2               |
+| `int`     | 32          | 4               |
+| `long`    | 64          | 8               |
+| `float`   | 32          | 4               |
+| `double`  | 64          | 8               |
+| `char`    | 16          | 2               |
+| `boolean` | 1*          | (JVM Dependant) |
+
+---
+
+*A `boolean` represents one bit of information, but is often stored as a full byte in memory for alignment purposes.*
+
+## Latency Numbers Every Programmer Should Know
+
+| Operation                               | Latency                      |
+|:----------------------------------------|:-----------------------------|
+| L1 cache reference                      | ~1 nanosecond                |
+| Branch mispredict                       | ~3 nanoseconds               |
+| L2 cache reference                      | ~4 nanoseconds               |
+| Mutex lock/unlock                       | ~20 nanoseconds              |
+| **Main memory reference**               | **~100 nanoseconds**         |
+| Compress 1 KB with Snappy               | ~1,000 ns (1 µs)             |
+| Send 1 KB over 1 Gbps network           | ~10,000 ns (10 µs)           |
+| Read 4 KB randomly from SSD             | ~100,000 ns (100 µs)         |
+| **Round trip within same datacenter**   | **~500,000 ns (500 µs)**     |
+| Read 1 MB sequentially from memory      | ~1,000,000 ns (1 ms)         |
+| Read 1 MB sequentially from SSD         | ~1,000,000 ns (1 ms)         |
+| **Disk seek (HDD)**                     | **~10,000,000 ns (10 ms)**   |
+| Read 1 MB sequentially from HDD         | ~20,000,000 ns (20 ms)       |
+| **Send packet CA -> Netherlands -> CA** | **~150,000,000 ns (150 ms)** |
+
+### Powers of 10 (Time Units)
+
+| Unit        | Abbreviation | Equivalent                |
+|:------------|:-------------|:--------------------------|
+| Nanosecond  | ns           | 1/1,000,000,000 second    |
+| Microsecond | µs           | 1,000 ns                  |
+| Millisecond | ms           | 1,000 µs (1/1,000 second) |
+| Second      | s            | 1,000 ms                  |
+
+### Powers of 2 (Common Data Units)
+
+| Unit     | Abbreviation | Equivalent               |
+|:---------|:-------------|:-------------------------|
+| Kilobyte | KB           | 2^10 bytes (1,024 bytes) |
+| Megabyte | MB           | 2^20 bytes (1,024 KB)    |
+| Gigabyte | GB           | 2^30 bytes (1,024 MB)    |
+| Terabyte | TB           | 2^40 bytes (1,024 GB)    |
+| Petabyte | PB           | 2^50 bytes (1,024 TB)    |   
+| Exabyte  | EB           | 2^60 bytes (1,024 PB)    |
+
+
+| Decimal Prefix (Power of 10) | Value           | Binary Prefix (Power of 2) | Value           | % Difference | 
+|:-----------------------------|:----------------|:---------------------------|:----------------|:-------------| 
+| Kilobyte (KB)                | 10³ = 1,000     | Kibibyte (KiB)             | 2¹⁰ = 1,024     | 2.4%         | 
+| Megabyte (MB)                | 10⁶ = 1,000,000 | Mebibyte (MiB)             | 2²⁰ = 1,048,576 | 4.8%         | 
+| Gigabyte (GB)                | 10⁹             | Gibibyte (GiB)             | 2³⁰             | 7.4%         | 
+| Terabyte (TB)                | 10¹²            | Tebibyte (TiB)             | 2⁴⁰             | 10.0%        | 
+| Petabyte (PB)                | 10¹⁵            | Pebibyte (PiB)             | 2⁵⁰             | 12.6%        | 
+| Exabyte (EB)                 | 10¹⁸            | Exbibyte (EiB)             | 2⁶⁰             | 15.3%        |
