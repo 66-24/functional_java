@@ -4,6 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.DoubleSupplier;
+import java.util.function.Supplier;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FunctionalInterfacesTest {
 
@@ -21,33 +26,49 @@ public class FunctionalInterfacesTest {
 
     @Test
     public void implementConsumerUsingLambda() throws Exception {
-//        consumer.accept("Hello, World!");
+        Consumer<String> consumer = (String s) -> System.out.println(s);
+        consumer.accept("Hello, World!");
     }
 
     @Test
     public void implementConsumerUsingMethodReference() throws Exception {
-//        consumer.accept("Hello, World!");
+        Consumer<String> consumer = System.out::println;
+        consumer.accept("Hello, World!");
     }
 
     @Test
     public void implementSupplierUsingAnonInnerClass() throws Exception {
-//        assertEquals("Hello", supplier.get());
+        var supplier = new Supplier<String>() {
+            @Override
+            public String get() {
+                return "Hello";
+            }
+        };
+        assertEquals("Hello", supplier.get());
     }
 
     @Test
     public void implementSupplierUsingLambda() throws Exception {
-//        assertEquals("Hello", supplier.get());
+        Supplier<String> supplier = () -> "Hello";
+        assertEquals("Hello", supplier.get());
     }
 
     @Test
     public void implementSupplierUsingMethodReference() throws Exception {
+        Supplier<Double> supplier = new Supplier<Double>() {
+            @Override
+            public Double get() {
+                return Math.random();
+            }
+        };
         // Create a Supplier<Double> that calls Math.random()
-//        assertTrue(supplier.get() >= 0.0);
-//        assertTrue(supplier.get() <= 1.0);
+        assertTrue(supplier.get() >= 0.0);
+        assertTrue(supplier.get() <= 1.0);
 
         // Create a DoubleSupplier that does the same
-//        assertTrue(doubleSupplier.getAsDouble() >= 0.0);
-//        assertTrue(doubleSupplier.getAsDouble() <= 1.0);
+        DoubleSupplier doubleSupplier = Math::random;
+        assertTrue(doubleSupplier.getAsDouble() >= 0.0);
+        assertTrue(doubleSupplier.getAsDouble() <= 1.0);
     }
 
     @Test
