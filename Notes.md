@@ -1,13 +1,27 @@
 # Learn Functional Java
 
-08/13/2025
-> JDK  
+## Nixify
+
+1. `devenv init`
+2. enable java with gradle, see ![devenv.nix](./devenv.nix)
+3. Navigate to Build Tools/Gradle
+   1. Set Gradle JVM
+4. Mark the following directories as `Mark Excluded` to prevent IJ from indexing them:
+   1. .devenv
+   2. .direnv
+    ![tools.png](tools.png)
+5. Restart IJ (There's probably a way to trigger importing Gradle project without a restart 😩)
+
+> 08/13/2025 JDK  
 > JDK released every september
 > JDK25 is a LTS
 
 - https://www.kousenit.com/java/
 - ![Functional Programming in Java](functional_programming_in_java.pdf)
 - https://github.com/kousen/java_8_recipes
+- https://github.com/kousen/java_upgrade
+- https://github.com/kousen/java_latest
+- http://www.kousenit.com/java/
 - https://github.com/kousen/java_upgrade
 - [Java Docs](https://docs.oracle.com/en/java/javase/21/docs/api/index.html)
 - [Function](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/package-summary.html)
