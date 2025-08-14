@@ -30,6 +30,8 @@
 - https://github.com/kousen/java_upgrade
 - [Java Docs](https://docs.oracle.com/en/java/javase/21/docs/api/index.html)
 - [Function](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/package-summary.html)
+- https://www.youtube.com/@talesfromthejarside
+- https://substack.com/home/post/p-169390583
 
 ## Vavr.io
 > 😱 upside down J A V A
@@ -37,7 +39,34 @@
 - Richer datastructures
 - Superior error handling
 
+## JSpecify
+https://spring.io/blog/2025/03/10/null-safety-in-spring-apps-with-jspecify-and-null-away
 
+## OCaml
+https://xvw.lol/en/articles/why-ocaml.html
+
+## Haskell
+- 
+- https://haskellbook.com/tools/
+- https://www.youtube.com/watch?v=1MNTerD8IuI&pp=ygUYaGFza2VsbCBnYW1lIGRldmVsb3BtZW50
+  ![Haskell Gaming](haskell_gaming.png)
+- https://github.com/Frege/frege
+- 
+## Streams
+
+Types of operations:
+- Source
+- Intermediate
+- Terminal 
+- Cross-cutting*
+  - limit(n)
+  - takeWhile(Predicate)
+    Interface	Purpose	Method Signature	How to Remember It
+    Function<T, R>	Transforms an input T into an output R.	R apply(T t)	You apply a function to a value.
+    Predicate<T>	Tests an input T against a condition.	boolean test(T t)	You test if a value is true or false.
+    Consumer<T>	Does something with an input T (side-effect).	void accept(T t)	You accept a value to operate on it.
+    Supplier<T>	Provides a value of type T without taking input.	T get()	You get a value from a source.
+  - Compositions
 ## Production Troubleshooting with JVM Tools
 
 The Java Development Kit (JDK) includes a powerful suite of command-line tools for diagnosing and troubleshooting performance issues in a running Java Virtual Machine (JVM). The four primary tools for live production analysis are `jstat`, `jstack`, `jmap`, and `jfr`.
