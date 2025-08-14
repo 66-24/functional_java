@@ -6,10 +6,11 @@ public class CurryingExample {
     public static void main(String[] args) {
 
         // 1. Define the curried function.
-        // The type signature is the key: Function<String, Function<String, Function<String, String>>>
         // It's a function that returns a function that returns a function.
-        Function<String, Function<String, Function<String, String>>> tagWrapperCurried =
-                prefix -> content -> suffix -> prefix + content + suffix;
+        Function<String,
+                Function<String,
+                    Function<String, String>>> tagWrapperCurried =
+                        prefix -> content -> suffix -> prefix + content + suffix;
 
         // 2. Use the function by applying arguments one by one.
         // Each .apply() call returns the next function in the chain.

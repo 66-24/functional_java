@@ -31,6 +31,13 @@
 - [Java Docs](https://docs.oracle.com/en/java/javase/21/docs/api/index.html)
 - [Function](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/package-summary.html)
 
+## Vavr.io
+> 😱 upside down J A V A
+- Immutable datastructures
+- Richer datastructures
+- Superior error handling
+
+
 ## Production Troubleshooting with JVM Tools
 
 The Java Development Kit (JDK) includes a powerful suite of command-line tools for diagnosing and troubleshooting performance issues in a running Java Virtual Machine (JVM). The four primary tools for live production analysis are `jstat`, `jstack`, `jmap`, and `jfr`.
